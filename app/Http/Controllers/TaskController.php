@@ -32,7 +32,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         if ($task->status !== 'pendente') {
-            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser alteradas.'], 403); //arrumar com api resource
+            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser alteradas.'], 403);
         }
 
         $validated = $request->validate([
@@ -51,7 +51,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         if ($task->status !== 'pendente') {
-            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser excluídas.'], 403); //arrumar com api resource
+            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser excluídas.'], 403);
         }
 
         $task->delete();
