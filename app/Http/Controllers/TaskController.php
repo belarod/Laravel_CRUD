@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        return Task::all(); //arrumar com api resource
+        $tasks = Task::all();
+        return response()->json(TaskResource::collection($tasks), 200);
     }
 
     public function store(Request $request)
@@ -23,14 +25,14 @@ class TaskController extends Controller
 
         $task = Task::create($validated);
 
-        return response()->json($task, 201); //arrumar com api resource
+        return response()->json(new TaskResource($task), 201);
     }
 
     public function update(Request $request, $id)
     {
         $task = Task::findOrFail($id);
         if ($task->status !== 'pendente') {
-            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser alteradas.']); //arrumar com api resource
+            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser alteradas.'], 403); //arrumar com api resource
         }
 
         $validated = $request->validate([
@@ -42,18 +44,19 @@ class TaskController extends Controller
 
         $task->update($validated);
 
-        return response()->json($task); //arrumar com api resource
+        return response()->json(new TaskResource($task), 200);
     }
 
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
         if ($task->status !== 'pendente') {
-            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser excluídas.']); //arrumar com api resource
+            return response()->json(['error' => 'Apenas tarefas com status "PENDENTE" podem ser excluídas.'], 403); //arrumar com api resource
         }
 
         $task->delete();
 
-        return response()->json(['message' => 'Task '+$id+'deletada com sucesso.']); //arrumar com api resource
+        return response()->json(['message' => "Tarefa {$id} deletada com sucesso.",
+            'task' => new TaskResource($task)], 200);
     }
 }
