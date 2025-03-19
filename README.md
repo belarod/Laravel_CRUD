@@ -17,7 +17,7 @@ Acessando http://localhost/phpmyadmin/, crie um banco de dados, e o configure no
   php artisan migrate
 ```
 
-Depois de estabelecer a conexção com o banco de dados, acionamos o serivor local, rode:
+Depois de estabelecer a conexão com o banco de dados, acionamos o serivor local, rode:
 
 ```bash
   php artisan serve
