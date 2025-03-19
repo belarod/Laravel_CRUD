@@ -9,6 +9,13 @@ class TaskResource extends JsonResource
 {
     public function toArray(?Request $request): array
     {
+        /**
+         * Transforma o retorno da tarefa em um array.
+         *
+         * @param  \Illuminate\Http\Request|null  $request
+         * @return array<string, mixed>
+         */
+
         return [
             'id' => $this->id,
             'title' => $this->title,
