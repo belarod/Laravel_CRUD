@@ -2,14 +2,14 @@
 # CRUD em Laravel 12
 
 Projeto em Laravel 12 implementa um CRUD básico.
-Feito para um teste p/ estágio em desenvolvimento Laravel.
+Feito para um teste para estágio em desenvolvimento Laravel.
 
 
 
 
 ## Deploy
 
-Para fazer o deploy desse projeto, baixe o 7zip e XAMP. Tenha certeza que XAMPP esteja instalado e rodando com Apache e mySQL ativos.
+Para fazer o deploy desse projeto, baixe o 7zip e XAMPP. Tenha certeza que XAMPP esteja instalado e rodando com Apache e mySQL ativos.
 
 Para clonar o projeto, use:
 ```bash
@@ -81,7 +81,7 @@ Acesse no navegador: http://127.0.0.1:8000/api/tasks
 ```bash
   Invoke-RestMethod -Uri http://127.0.0.1:8000/api/tasks -Method POST -ContentType "application/json" -Body '{
     "title": "Aprender Laravel",
-    "description": "Estudar controllers e rotas",
+    "description": "Estudar......",
     "status": "pendente",
     "due_date": "2025-03-30"}'
 ```
@@ -90,7 +90,7 @@ Acesse no navegador: http://127.0.0.1:8000/api/tasks
 *Alterando uma tarefa (possível apenas com status 'pendente'):
 ```bash
   Invoke-RestMethod -Uri http://127.0.0.1:8000/api/tasks/11 -Method PUT -ContentType 'application/json' -Body '{
-  "title": "aaaaaal",
+  "title": "Título alterado com sucesso!!",
   "description": "oi!",
   "status": "pendente",
   "due_date": "2025-04-05"}'
